@@ -19,27 +19,38 @@
 
     <script type="text/javascript">
 
+      "use strict";
 
+      $(document).ready(function() {
 
-        $("#getDataButton").click(function() {
-
-          var country = $("#country").val();
-          var url = "https://covid-data-service.herokuapp.com/getCountryStats?country="+country;
+        $('#getDataButton').click(function() {
+          console.log("you clicked!");
+          //var country = $("#country").val();
+          //var url = "https://covid-data-service.herokuapp.com/getCountryStats?country="+country;
 
           $.ajax({
-            url : url,
-            type : 'GET',
-            dataType: "jsonp",
-            contentType: "application/x-www-form-urlencoded",
-            success : function(data) {
-              console.log("success!!!");
+            url:'https://covid-data-service.herokuapp.com/getCountryStats',
+            data:{
+                'country': 'Switzerland',
+            },
+            dataType: 'json',
+            success: function (data) {
+              console.log("success!");
+                if (data.status === 'OK') {
+                  console.log("success")
+                }
+            }
+        });
+
+
+            /*success : function(data) {
+              alert("success!!!");
             },
             error : function(request,error) {
               console.log("error");
-            }
+            } */
           });
-
-    });
+      });
     </script>
 </head>
 
