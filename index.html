@@ -23,32 +23,21 @@
 
       $(document).ready(function() {
 
-        $('#getDataButton').click(function() {
-          console.log("you clicked!");
-          //var country = $("#country").val();
-          //var url = "https://covid-data-service.herokuapp.com/getCountryStats?country="+country;
+        $('#getDataButton').click(function(e) {
+          e.preventDefault();
+
+          var country = $("#country").val();
 
           $.ajax({
             url:'https://covid-data-service.herokuapp.com/getCountryStats',
             data:{
-                'country': 'Switzerland',
+                'country': country,
             },
             dataType: 'json',
             success: function (data) {
-              console.log("success!");
-                if (data.status === 'OK') {
-                  console.log("success")
-                }
+              $('#covidData').append("<p>Infected: " + data.infected + "\nDeath: " + data.deaths + "\nRecovered: " + data.recovered + "</p>");
             }
         });
-
-
-            /*success : function(data) {
-              alert("success!!!");
-            },
-            error : function(request,error) {
-              console.log("error");
-            } */
           });
       });
     </script>
