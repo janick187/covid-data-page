@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>COVID Data Service</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+
+
+
+        $("#getDataButton").click(function() {
+
+          var country = $("#country").val();
+          var url = "https://covid-data-service.herokuapp.com/getCountryStats?country="+country;
+
+          $.ajax({
+            url : url,
+            type : 'GET',
+            dataType: "jsonp",
+            contentType: "application/x-www-form-urlencoded",
+            success : function(data) {
+              console.log("success!!!");
+            },
+            error : function(request,error) {
+              console.log("error");
+            }
+          });
+
+    });
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">COVID Data Service</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid text-center">
+        <div class="row content">
+            <div class="col-sm-12 text-left">
+                <div class="col-sm-2 text-left">
+                    <div class="box">
+                      <form>
+                        <div class="form-group">
+                          <label for="country">Country</label>
+                          <input type="text" class="form-control" id="country" aria-describedby="countryHelp" placeholder="Enter country">
+                          <span id="error"></span>
+                          <small id="countryHelp" class="form-text text-muted">Type in the Country for which you want to see the latest COVID data (e.g. type in "Switzerland")</small>
+                        </div>
+                        <button type="submit" id="getDataButton" class="btn btn-primary">Get Data</button>
+                      </form>
+                      <div id="covidData">
+                      </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
