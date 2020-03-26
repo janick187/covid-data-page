@@ -23,12 +23,19 @@
 
       "use strict";
 
+
       $(document).ready(function() {
+
+        $(".result-panel").hide();
 
         $('#getDataButton').click(function(e) {
           e.preventDefault();
 
+          $('#errorMessage').empty();
+
           var country = $("#country").val();
+
+          var datainserted = false;
 
           $.ajax({
             url:'https://covid-data-service.herokuapp.com/getCountryStats',
@@ -38,31 +45,37 @@
             },
             dataType: 'json',
             success: function (data) {
-              //$('#covidData').append("<p>Updated: " + data.updated +"</p>");
               $('#numInfected').text(data.infected);
               $('#numDeaths').text(data.deaths);
               //$('#numRecov').text(data.recovered);
               $('#numMort').text(data.mortality);
               $('#updatedDate').text("Updated: " + data.updated);
+              $('.result-panel').show();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+              if (jqXHR.status == 404) {
+                $('.result-panel').hide();
+                $('#errorMessage').text("No data available for this country!");
+              }
             }
         });
+
           });
       });
     </script>
+
     <style>
 
     hr.style1{
       border-top: 1px solid #8c8b8b;
     }
 
+    .hidden {
+      display: none;
+    }
     .custom {
       width: 200px !important;
       cursor: not-allowed !important;
-    }
-
-    .custom-mortality {
-      background-color: #808080;
-      border-color: #2F3E48;
     }
 
 </style>
@@ -357,12 +370,13 @@
                                 <span class="badge badge-light" id="numRecov"></span>
                                 <span class="sr-only"></span>
                               </button>-->
-                              <button type="button" class="btn btn-secondary custom mt-2">
+                              <button type="button" class="btn btn-secondary hidden custom result-panel mt-2">
                                 Mortality
                                 <span class="badge badge-light" id="numMort"></span>
                                 <span class="sr-only"></span>
                               </button>
-                              <p class="text-left mt-3"><span id="updatedDate"></span></p>
+                              <p class="text-left result-panel mt-3"><span id="updatedDate"></span></p>
+
                     </div>
 
         </div>
