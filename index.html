@@ -41,7 +41,7 @@
               //$('#covidData').append("<p>Updated: " + data.updated +"</p>");
               $('#numInfected').text(data.infected);
               $('#numDeaths').text(data.deaths);
-              $('#numRecov').text(data.recovered);
+              //$('#numRecov').text(data.recovered);
               $('#numMort').text(data.mortality);
               $('#updatedDate').text("Updated: " + data.updated);
             }
@@ -352,11 +352,11 @@
                                 <span class="badge badge-light" id="numDeaths"></span>
                                 <span class="sr-only"></span>
                               </button>
-                              <button type="button" class="btn btn-success custom mt-2">
+                              <!--<button type="button" class="btn btn-success custom mt-2">
                                 Recovered
                                 <span class="badge badge-light" id="numRecov"></span>
                                 <span class="sr-only"></span>
-                              </button>
+                              </button>-->
                               <button type="button" class="btn btn-secondary custom mt-2">
                                 Mortality
                                 <span class="badge badge-light" id="numMort"></span>
