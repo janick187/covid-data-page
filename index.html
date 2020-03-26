@@ -78,6 +78,10 @@
       cursor: not-allowed !important;
     }
 
+    .result-panel {
+      display:none;
+    }
+
 </style>
 </head>
 
@@ -350,9 +354,9 @@
                           </select>
                           <span id="error"></span>
                           <small id="countryHelp" class="form-text text-muted">Select a country</small>
+                          <small class="text-danger" id="errorMessage"></small>
                         </div>
                         <button type="submit" id="getDataButton" class="btn btn-primary">Get Data</button>
-						<p class=".text-danger"><span id="errorMessage"></span></p>
                       </form>
                         <br>
                         <hr class="style1 result-panel"></hr>
@@ -371,15 +375,13 @@
                                 <span class="badge badge-light" id="numRecov"></span>
                                 <span class="sr-only"></span>
                               </button>-->
-                              <button type="button" class="btn btn-secondary hidden custom result-panel mt-2">
+                              <button type="button" class="btn btn-secondary custom result-panel mt-2">
                                 Mortality
                                 <span class="badge badge-light" id="numMort"></span>
                                 <span class="sr-only"></span>
                               </button>
                               <p class="text-left result-panel mt-3"><span id="updatedDate"></span></p>
-
                     </div>
-
         </div>
     </div>
 </body>
