@@ -15,7 +15,6 @@
       <script type="text/javascript">
          "use strict";
 
-
          $(document).ready(function() {
 
            $(".result-panel").hide();
@@ -31,7 +30,6 @@
 
              $.ajax({
                url:'https://covid-data-service.herokuapp.com/getCountryStats',
-               //url:'http://127.0.0.1:5000/getCountryStats',
                data:{
                    'country': country,
                },
@@ -39,8 +37,8 @@
                success: function (data) {
                  $('#numInfected').text(data.infected);
                  $('#numDeaths').text(data.deaths);
-                 //$('#numRecov').text(data.recovered);
                  $('#numMort').text(data.mortality);
+                 $('#numRecov').text(data.recovered);
                  $('#updatedDate').text("Updated: " + data.updated);
                  $('.result-panel').show();
                },
@@ -51,16 +49,12 @@
                  }
                }
            });
-
              });
          });
       </script>
       <style>
          hr.style1{
          border-top: 1px solid #8c8b8b;
-         }
-         .hidden {
-         display: none;
          }
          .custom {
          width: 200px !important;
@@ -356,11 +350,11 @@
                <span class="badge badge-light" id="numDeaths"></span>
                <span class="sr-only"></span>
                </button>
-               <!--<button type="button" class="btn btn-success custom mt-2">
+               <button type="button" class="btn btn-success custom result-panel mt-2">
                   Recovered
                   <span class="badge badge-light" id="numRecov"></span>
                   <span class="sr-only"></span>
-                  </button>-->
+                </button>
                <button type="button" class="btn btn-secondary custom result-panel mt-2">
                Mortality
                <span class="badge badge-light" id="numMort"></span>
