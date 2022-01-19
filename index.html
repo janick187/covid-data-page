@@ -24,7 +24,8 @@
 
              $('#errorMessage').empty();
 
-             var country = $("#country").val();
+             // var country = $("#country").val();
+             var country = $( "#country option:selected" ).text();
 
              var datainserted = false;
 
